@@ -1,149 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Josiane Nikuze | Frontend Developer</title>
+    <title>Josiane Nikuze | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-    <!-- Background Elements -->
+    <!-- UI Layout -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+    <div class="back-to-top" id="backToTop"><i data-lucide="arrow-up"></i></div>
+
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
-    <!-- Navigation -->
-    <header class="navbar">
+    <!-- Professional Navbar -->
+    <header class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Josiane<span class="dot">.</span></a>
+            <a href="#" class="logo">
+                <div class="logo-icon">JN</div>
+                Josiane<span class="dot"></span>
+            </a>
             <nav class="nav-links">
                 <a href="#about">About</a>
+                <a href="#experience">Experience</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
-                <a href="#services">Services</a>
                 <a href="#contact" class="nav-btn">Contact Me</a>
             </nav>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i data-lucide="menu"></i>
             </button>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-nav" id="mobileNav">
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#skills" class="mobile-link">Skills</a>
-            <a href="#projects" class="mobile-link">Projects</a>
-            <a href="#services" class="mobile-link">Services</a>
-            <a href="#contact" class="mobile-link">Contact</a>
-        </div>
     </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content fade-in">
-            <span class="badge">Welcome to my portfolio</span>
-            <h1 class="hero-title">Hi, I'm <span class="highlight">Josiane Nikuze</span></h1>
-            <h2 class="hero-subtitle">Frontend Developer | IT Student | React Learner</h2>
-            <p class="hero-desc">
-                I build modern, responsive, and interactive web applications using HTML, CSS, JavaScript, and React. Passionate about creating seamless user experiences.
-            </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">View Projects <i data-lucide="arrow-right"></i></a>
-                <a href="#contact" class="btn btn-secondary">Contact Me</a>
-            </div>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub"><i data-lucide="github"></i></a>
-                <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
-            </div>
+        <!-- Vertical Social Sidebar -->
+        <div class="hero-socials">
+            <a href="#" class="social-link" aria-label="GitHub"><i data-lucide="github"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i data-lucide="twitter"></i></a>
         </div>
-        <div class="hero-image-container fade-in delay-1">
-            <div class="hero-image-wrapper">
-                <div class="hero-image-placeholder">
-                    <i data-lucide="code-2" class="hero-icon"></i>
-                </div>
-                <div class="floating-badge badge-1">
-                    <i data-lucide="layout"></i> UI/UX
-                </div>
-                <div class="floating-badge badge-2">
-                    <i data-lucide="smartphone"></i> Responsive
-                </div>
-            </div>
+
+        <div class="hero-image-wrapper fade-in">
+            <img src="profile.png" alt="Josiane Nikuze" class="hero-profile-img">
+        </div>
+        <div class="hero-content fade-in delay-1">
+            <h1 class="hero-title">Hi, I'm <span class="highlight">Josiane Nikuze</span></h1>
+            <p class="hero-subtitle">Frontend Developer | IT Student | React Enthusiast</p>
+            <p class="hero-description">Building modern, interactive, and high-performance web applications with a focus
+                on clean code and stunning UI.</p>
+
+        <div class="hero-btns">
+            <a href="#projects" class="btn btn-primary">View Projects <i data-lucide="external-link"></i></a>
+            <button class="btn btn-secondary" id="cvBtn"><i data-lucide="download"></i> Download CV</button>
+        </div>
+
         </div>
     </section>
+
+
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="section-header fade-in">
             <h2>About <span class="highlight">Me</span></h2>
-            <p>Get to know who I am and what I do.</p>
+            <p>Combining technology and design to build the future.</p>
         </div>
-        <div class="about-content">
-            <div class="about-text fade-in">
-                <p>I am an Information Technology student at <strong>IPRC Karongi</strong>, passionate about web development and software engineering. I enjoy building interactive web applications and continuously improving my frontend development skills using modern technologies.</p>
-                <div class="about-highlights">
-                    <div class="highlight-item">
-                        <i data-lucide="graduation-cap"></i>
-                        <div>
-                            <h3>Education</h3>
-                            <p>IT Student at IPRC Karongi</p>
-                        </div>
+        <div class="about-bento fade-in">
+            <!-- Narrative Block -->
+            <div class="bento-item narrative-block">
+                <span class="bento-badge">Professional Background</span>
+                <h3>The Vision Behind the Code</h3>
+                <p>
+                    I am <strong>Josiane Nikuze</strong>, an Information Technology student at <strong>IPRC
+                        Karongi</strong>, deeply passionate about the intersection of web development and software
+                    engineering. I believe in the power of technology to transform industries and empower communities.
+                </p>
+                <p>
+                    I specialize in engineering responsive and interactive web applications using <strong>HTML, CSS, and
+                        JavaScript</strong>, and I am currently expanding my expertise in the <strong>React
+                        Ecosystem</strong>.
+                </p>
+                <div class="bento-signature">
+                    <p>— Josiane Nikuze</p>
+                    <span>Full Stack Visionary</span>
+                </div>
+            </div>
+
+            <!-- Education Block -->
+            <div class="bento-item education-block">
+                <i data-lucide="graduation-cap"></i>
+                <div class="bento-content">
+                    <h4>IPRC Karongi</h4>
+                    <p>IT Degree Candidate</p>
+                    <span class="status-pill">Active</span>
+                </div>
+            </div>
+
+            <!-- Stats Blocks -->
+            <div class="bento-item stat-block">
+                <h4>3+</h4>
+                <p>Years Learning</p>
+            </div>
+
+            <div class="bento-item stat-block">
+                <h4>10+</h4>
+                <p>Projects Built</p>
+            </div>
+
+            <!-- Impact Block -->
+            <div class="bento-item impact-block">
+                <h4>Proven Solutions</h4>
+                <div class="impact-list">
+                    <div class="impact-item"><i data-lucide="check-circle"></i> Payroll Systems</div>
+                    <div class="impact-item"><i data-lucide="check-circle"></i> Tourism Platforms</div>
+                    <div class="impact-item"><i data-lucide="check-circle"></i> Education Apps</div>
+                </div>
+            </div>
+
+            <!-- Dedication Block -->
+            <div class="bento-item dedication-block">
+                <i data-lucide="heart"></i>
+                <h4>100%</h4>
+                <p>Dedication</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Experience Section -->
+    <section class="experience" id="experience">
+        <div class="section-header fade-in">
+            <h2>Education & <span class="highlight">Experience</span></h2>
+            <p>A comprehensive timeline of my academic and professional milestones.</p>
+        </div>
+
+        <div class="timeline">
+            <!-- Education Block -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot education-dot"></div>
+                <div class="timeline-date">2024 – Present</div>
+                <div class="timeline-card">
+                    <span class="category-tag">Education</span>
+                    <h3>Information Technology Student</h3>
+                    <p class="company">IPRC Karongi</p>
+                    <p class="description">Architecting a foundation in software engineering and modern web ecosystems
+                        with a focus on production-ready systems.</p>
+
+                    <div class="curriculum-grid">
+                        <div class="curriculum-item"><i data-lucide="code-2"></i> Frontend Web</div>
+                        <div class="curriculum-item"><i data-lucide="coffee"></i> Java Development</div>
+                        <div class="curriculum-item"><i data-lucide="database"></i> Database Design</div>
+                        <div class="curriculum-item"><i data-lucide="layers"></i> Software Eng.</div>
+                        <div class="curriculum-item"><i data-lucide="search"></i> System Analysis</div>
+                        <div class="curriculum-item"><i data-lucide="cpu"></i> Digital Electronics</div>
                     </div>
-                    <div class="highlight-item">
-                        <i data-lucide="target"></i>
-                        <div>
-                            <h3>Goals</h3>
-                            <p>To become a Full-Stack Software Engineer</p>
-                        </div>
-                    </div>
-                    <div class="highlight-item">
-                        <i data-lucide="heart"></i>
-                        <div>
-                            <h3>Interests</h3>
-                            <p>UI Design, Open Source, Tech Communities</p>
-                        </div>
+                </div>
+            </div>
+
+            <!-- Experience: ExploreRwanda -->
+            <div class="timeline-item fade-in delay-1">
+                <div class="timeline-dot project-dot"></div>
+                <div class="timeline-date">My Project</div>
+                <div class="timeline-card">
+                    <span class="category-tag">System Developer</span>
+                    <h3>ExploreRwanda Smart Travel Platform</h3>
+                    <p class="description">Co-architected a nationwide tourism platform focused on modernizing booking
+                        workflows in Rwanda.</p>
+                    <ul class="impact-list">
+                        <li>Developed the foundational system architecture and UX flows</li>
+                        <li>Engineered the traveler booking engine and dashboard</li>
+                        <li>Implemented complex data relationship models</li>
+                    </ul>
+                    <div class="tech-pills">
+                        <span class="tech-pill">System Design</span>
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">React.js</span>
+                        <span class="tech-pill">Spring Framework</span>
+                        <span class="tech-pill">PostgreSQL</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
+    <!-- Tech Stack Section (Granular Grid) -->
+    <section class="tech-stack" id="skills">
         <div class="section-header fade-in">
-            <h2>My <span class="highlight">Skills</span></h2>
-            <p>Technologies I work with to build amazing products.</p>
+            <h2>My <span class="highlight">Tech Stack</span></h2>
+            <p>Technologies I rely on to build clean, production-ready experiences.</p>
         </div>
-        <div class="skills-grid">
-            <div class="skill-category fade-in">
-                <h3><i data-lucide="monitor"></i> Frontend</h3>
-                <div class="skill-list">
-                    <div class="skill-item"><span>HTML5</span> <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></div>
-                    <div class="skill-item"><span>CSS3 / Tailwind</span> <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
-                    <div class="skill-item"><span>JavaScript</span> <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div></div>
-                    <div class="skill-item"><span>React.js</span> <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div></div>
-                    <div class="skill-item"><span>Responsive Design</span> <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div></div>
-                </div>
-            </div>
-            
-            <div class="skill-category fade-in delay-1">
-                <h3><i data-lucide="wrench"></i> Tools</h3>
-                <div class="skill-list">
-                    <div class="skill-item"><span>Git</span> <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
-                    <div class="skill-item"><span>GitHub</span> <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
-                    <div class="skill-item"><span>VS Code</span> <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></div>
-                </div>
-            </div>
 
-            <div class="skill-category fade-in delay-2">
-                <h3><i data-lucide="book-open"></i> Learning</h3>
-                <div class="skill-list">
-                    <div class="skill-item"><span>Backend Development</span> <div class="progress-bar"><div class="progress" style="width: 50%;"></div></div></div>
-                    <div class="skill-item"><span>Java</span> <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div></div>
-                    <div class="skill-item"><span>Databases</span> <div class="progress-bar"><div class="progress" style="width: 55%;"></div></div></div>
-                </div>
+        <div class="tech-grid fade-in">
+            <!-- Next.js -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="layers"></i></div>
+                <span>Next.js</span>
+            </div>
+            <!-- MySQL -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="database"></i></div>
+                <span>MySQL</span>
+            </div>
+            <!-- PostgreSQL -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="database"></i></div>
+                <span>PostgreSQL</span>
+            </div>
+            <!-- C++ -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="binary"></i></div>
+                <span>C++</span>
+            </div>
+            <!-- Figma -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="figma"></i></div>
+                <span>Figma</span>
+            </div>
+            <!-- Github -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="github"></i></div>
+                <span>Github</span>
+            </div>
+            <!-- PHP -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="code"></i></div>
+                <span>PHP</span>
+            </div>
+            <!-- Node.js -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="box"></i></div>
+                <span>Node.js</span>
+            </div>
+            <!-- Java -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="coffee"></i></div>
+                <span>Java</span>
+            </div>
+            <!-- Spring Framework -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="leaf"></i></div>
+                <span>Spring</span>
+            </div>
+            <!-- Linux -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="terminal"></i></div>
+                <span>Linux</span>
+            </div>
+            <!-- Oracle Database -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="database"></i></div>
+                <span>Oracle DB</span>
+            </div>
+            <!-- React -->
+            <div class="tech-item">
+                <div class="tech-icon-wrapper"><i data-lucide="atom"></i></div>
+                <span>React</span>
             </div>
         </div>
     </section>
@@ -152,161 +283,239 @@
     <section class="projects" id="projects">
         <div class="section-header fade-in">
             <h2>Featured <span class="highlight">Projects</span></h2>
-            <p>Some of my recent work and personal projects.</p>
+            <p>Showcasing my best work and engineering projects.</p>
         </div>
         <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card fade-in">
-                <div class="project-image payroll-img">
-                    <i data-lucide="calculator"></i>
+            <!-- ExploreRwanda Project -->
+            <div class="project-card featured explorerwanda fade-in">
+                <div class="featured-header"
+                    style="background-image: url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="featured-logo">
+                        <i data-lucide="sparkle" style="color: #fbcf33; width: 40px; height: 40px;"></i>
+                    </div>
+                    <span class="featured-badge">Featured Build</span>
+                    <div class="featured-title-wrapper">
+                        <h3 class="featured-title">ExploreRwanda</h3>
+                        <div class="featured-watermark">RWANDA</div>
+                    </div>
                 </div>
                 <div class="project-info">
-                    <h3>Employee Payroll System</h3>
-                    <p>Payroll management app for employee salary processing and tracking with interactive charts.</p>
-                    <div class="project-tech">
-                        <span>React.js</span>
-                        <span>Material UI</span>
-                        <span>Recharts</span>
+                    <p>Discover the Heart of Africa's Green Paradise. A high-performance travel ecosystem enabling smart
+                        booking and real-time tourism logistics.</p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">React.js</span>
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">PostgreSQL</span>
+                        <span class="tech-pill">Tailwind CSS</span>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text"><i data-lucide="github"></i> Code</a>
-                        <a href="#" class="btn-text"><i data-lucide="external-link"></i> Live Demo</a>
-                    </div>
+                </div>
+                <div class="featured-footer">
+                    <span class="live-label">Web Platform</span>
+                    <a href="https://explore-smart-travel-patform-ulwl.vercel.app/" class="view-btn" target="_blank">
+                        Launch Project <i data-lucide="move-right"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="project-card fade-in delay-1">
-                <div class="project-image college-img">
-                    <i data-lucide="school"></i>
-                </div>
-                <div class="project-info">
-                    <h3>RP Karongi College Website</h3>
-                    <p>Interactive college website featuring dark/light mode, live clocks, gallery, and FAQ animations.</p>
-                    <div class="project-tech">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text"><i data-lucide="github"></i> Code</a>
-                        <a href="#" class="btn-text"><i data-lucide="external-link"></i> Live Demo</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Project 3 -->
-            <div class="project-card fade-in delay-2">
-                <div class="project-image travel-img">
-                    <i data-lucide="plane"></i>
+            <!-- Mini Chess Game Project -->
+            <div class="project-card featured minichess fade-in delay-2">
+                <div class="featured-header"
+                    style="background-image: url('https://images.unsplash.com/photo-1528819622765-d6bcf132f793?auto=format&fit=crop&q=80&w=1200');">
+                    <div class="featured-logo">
+                        <i data-lucide="award" style="color: #f59e0b; width: 40px; height: 40px;"></i>
+                    </div>
+                    <span class="featured-badge">Engineering Build</span>
+                    <div class="featured-title-wrapper">
+                        <h3 class="featured-title">MiniChess</h3>
+                        <div class="featured-watermark">CHESS</div>
+                    </div>
                 </div>
                 <div class="project-info">
-                    <h3>ExploreRwanda Travel Platform</h3>
-                    <p>A smart tourism platform for booking accommodations and travel experiences across beautiful Rwanda.</p>
-                    <div class="project-tech">
-                        <span>Java</span>
-                        <span>Frontend Stack</span>
+                    <p>Sophisticated Java-based chess engine featuring an AI opponent, LAN multiplayer synchronization,
+                        and automatic cloud backup systems.</p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Java Swing</span>
+                        <span class="tech-pill">LAN API</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">Networking</span>
                     </div>
-                    <div class="project-links">
-                        <a href="#" class="btn-text"><i data-lucide="github"></i> Code</a>
-                        <a href="#" class="btn-text"><i data-lucide="external-link"></i> Live Demo</a>
-                    </div>
+                </div>
+                <div class="featured-footer">
+                    <span class="live-label">Desktop Game</span>
+                    <a href="#" class="view-btn">
+                        View Repository <i data-lucide="move-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-header fade-in">
-            <h2>My <span class="highlight">Services</span></h2>
-            <p>What I can do for you.</p>
+
+    <div class="footer-cta fade-in">
+        <div class="footer-cta-text">
+            <h2>Ready to start a project?</h2>
+            <p>Let's build something amazing together.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card fade-in">
-                <div class="service-icon"><i data-lucide="layout-template"></i></div>
-                <h3>Web Design</h3>
-                <p>Creating beautiful, modern, and user-friendly interface designs that engage users.</p>
-            </div>
-            <div class="service-card fade-in delay-1">
-                <div class="service-icon"><i data-lucide="code"></i></div>
-                <h3>Frontend Development</h3>
-                <p>Translating designs into high-quality, efficient, and maintainable code.</p>
-            </div>
-            <div class="service-card fade-in delay-2">
-                <div class="service-icon"><i data-lucide="smartphone"></i></div>
-                <h3>Responsive Websites</h3>
-                <p>Ensuring your website looks perfect on desktops, tablets, and mobile devices.</p>
-            </div>
-        </div>
-    </section>
+        <a href="#contact" class="btn btn-primary">Get In Touch <i data-lucide="arrow-right"></i></a>
+    </div>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-header fade-in">
-            <h2>Get In <span class="highlight">Touch</span></h2>
-            <p>Have a project in mind? Let's work together!</p>
-        </div>
-        <div class="contact-container fade-in">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <p>Feel free to reach out to me for collaborations, freelance projects, or just to say hi!</p>
-                
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="icon-box"><i data-lucide="mail"></i></div>
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="section-heading fade-in">
+                <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+                <p>Have a project in mind or just want to say hi? Feel free to reach out!</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <div class="info-card">
+                        <i data-lucide="mail"></i>
                         <div>
-                            <h4>Email</h4>
-                            <p>josiane.nikuze@example.com</p>
+                            <h4>Email Me</h4>
+                            <p>josianenikuze45@gmail.com</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="icon-box"><i data-lucide="phone"></i></div>
+                    <div class="info-card">
+                        <i data-lucide="phone"></i>
                         <div>
-                            <h4>Phone</h4>
-                            <p>+250 780 000 000</p>
+                            <h4>Call Me</h4>
+                            <p>+250798271462</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="icon-box"><i data-lucide="map-pin"></i></div>
+                    <div class="info-card">
+                        <i data-lucide="map-pin"></i>
                         <div>
                             <h4>Location</h4>
-                            <p>Karongi, Rwanda</p>
+                            <p>Kigali, Rwanda</p>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="contact-form-container fade-in delay-1">
+                    <form class="contact-form">
+                        <h3 class="form-title">Send a message</h3>
+                        <p class="form-subtitle">Share the problem you're solving, the timeline, and the kind of
+                            experience you want people to have.</p>
+
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" placeholder="Project collaboration" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="Tell me about your project or inquiry..." rows="5"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full">
+                            Send Message <i data-lucide="send"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="John Doe" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" placeholder="john@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="5" placeholder="Hello, I would like to talk about..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Send Message <i data-lucide="send"></i></button>
-            </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Josiane<span class="dot">.</span></div>
+    <!-- Professional Footer -->
+    <footer class="footer">
+
+
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">JN</div>Josiane<span class="dot">.</span>
+                </a>
+                <p>Crafting high-quality web experiences with precision and passion. Specializing in modern frontend
+                    technologies.</p>
+                <div class="footer-socials">
+                    <a href="#" class="social-icon" aria-label="GitHub"><i data-lucide="github"></i></a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                    <a href="#" class="social-icon" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home"><i data-lucide="chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i data-lucide="chevron-right"></i> About Me</a></li>
+                    <li><a href="#projects"><i data-lucide="chevron-right"></i> My Projects</a></li>
+                    <li><a href="#skills"><i data-lucide="chevron-right"></i> Skills</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i data-lucide="chevron-right"></i> Web Design</a></li>
+                    <li><a href="#"><i data-lucide="chevron-right"></i> App Development</a></li>
+                    <li><a href="#"><i data-lucide="chevron-right"></i> UI/UX Design</a></li>
+                    <li><a href="#"><i data-lucide="chevron-right"></i> Tech Consulting</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Subscribe to get the
+                    latest updates and articles.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
             <p>&copy; 2026 Josiane Nikuze. All rights reserved.</p>
-            <div class="footer-social">
-                <a href="#"><i data-lucide="github"></i></a>
-                <a href="#"><i data-lucide="linkedin"></i></a>
-                <a href="#"><i data-lucide="twitter"></i></a>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
         </div>
     </footer>
 
+    <!-- CV Preview Modal -->
+    <div class="modal-overlay" id="cvModal">
+        <div class="modal-content fade-in">
+            <div class="modal-header">
+                <h3><i data-lucide="file-text"></i> Curriculum Vitae</h3>
+                <button class="modal-close" id="closeModal"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="cv-preview-card">
+                    <div class="preview-skeleton">
+                        <div class="skeleton-header"></div>
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line short"></div>
+                    </div>
+                    <div class="preview-overlay">
+                        <p>Josiane Nikuze - Professional Portfolio</p>
+                        <span>PDF Document • 2.4 MB</span>
+                    </div>
+                </div>
+                <p class="modal-text">Would you like to download the full professional portfolio and CV for offline review?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                <a href="resume.html" target="_blank" class="btn btn-primary" id="confirmDownload">
+                    View & Download Resume <i data-lucide="download"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

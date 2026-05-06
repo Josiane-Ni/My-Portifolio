@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Josiane Nikuze</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.5;
+            background: #f3f4f6;
+            padding: 40px 20px;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 20px auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            border-top: 6px solid var(--primary);
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .header-left p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .summary p {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .item-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .item-header span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .item-sub {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .item ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .skill-cat h4 {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .skill-cat p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .resume-container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <div class="header-left">
+                <h1>Josiane Nikuze</h1>
+                <p>Frontend Developer | IT Student</p>
+            </div>
+            <div class="header-right">
+                <p>Kigali, Rwanda</p>
+                <p>+250 798 271 462</p>
+                <p>josianenikuze45@gmail.com</p>
+            </div>
+        </header>
+
+        <section class="summary">
+            <h2>Professional Summary</h2>
+            <p>Information Technology student at IPRC Karongi with a deep passion for web development and software engineering. Specialized in building modern, responsive, and high-performance web applications using HTML, CSS, JavaScript, and React. Committed to creating clean, interactive UI and efficient system architectures.</p>
+        </section>
+
+        <section class="education">
+            <h2>Education</h2>
+            <div class="item">
+                <div class="item-header">
+                    <h3>IPRC Karongi</h3>
+                    <span>2024 — Present</span>
+                </div>
+                <p class="item-sub">Information Technology Degree Candidate</p>
+                <ul>
+                    <li>Relevant Coursework: Frontend Web Development, Java Development, Database Design, Software Engineering, System Analysis, and Digital Electronics.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="experience">
+            <h2>Experience & Projects</h2>
+            <div class="item">
+                <div class="item-header">
+                    <h3>ExploreRwanda Smart Travel Platform</h3>
+                    <span>Featured Project</span>
+                </div>
+                <p class="item-sub">System Developer</p>
+                <ul>
+                    <li>Co-architected a nationwide tourism platform modernizing booking workflows in Rwanda.</li>
+                    <li>Developed foundational system architecture and UX flows using React.js and Node.js.</li>
+                    <li>Engineered traveler booking engine and dashboard with PostgreSQL data relationship models.</li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="item-header">
+                    <h3>MiniChess Engine</h3>
+                    <span>Engineering Build</span>
+                </div>
+                <p class="item-sub">Java Developer</p>
+                <ul>
+                    <li>Developed a sophisticated Java-based chess engine with AI opponents.</li>
+                    <li>Implemented LAN multiplayer synchronization and automatic cloud backup systems.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h4>Frontend</h4>
+                    <p>React.js, Next.js, HTML5, CSS3, JavaScript</p>
+                </div>
+                <div class="skill-cat">
+                    <h4>Backend</h4>
+                    <p>Node.js, Java, Spring Framework, PHP</p>
+                </div>
+                <div class="skill-cat">
+                    <h4>Databases</h4>
+                    <p>PostgreSQL, MySQL, Oracle DB</p>
+                </div>
+                <div class="skill-cat">
+                    <h4>Tools</h4>
+                    <p>Figma, GitHub, Linux, C++</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>Contact Information</h2>
+            <p><strong>Email:</strong> josianenikuze45@gmail.com</p>
+            <p><strong>Phone:</strong> +250 798 271 462</p>
+            <p><strong>Location:</strong> Kigali, Rwanda</p>
+        </section>
+    </div>
+
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <div style="text-align: center; margin-top: 20px; gap: 15px; display: flex; justify-content: center;" class="no-print">
+        <button onclick="window.close()" style="padding: 12px 24px; background: var(--text-muted); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">
+            Close / Cancel
+        </button>
+        <button id="downloadPdf" style="padding: 12px 24px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">
+            Download as PDF
+        </button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('downloadPdf');
+        btn.addEventListener('click', () => {
+            const element = document.querySelector('.resume-container');
+            const opt = {
+                margin: 0.5,
+                filename: 'Josiane_Nikuze_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        });
+
+        // Hide button during PDF generation
+        window.onbeforeprint = () => {
+            document.querySelector('.no-print').style.display = 'none';
+        };
+        window.onafterprint = () => {
+            document.querySelector('.no-print').style.display = 'block';
+        };
+    </script>
+</body>
+</html>
