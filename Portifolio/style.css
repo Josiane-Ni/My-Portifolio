@@ -30,32 +30,6 @@ body {
     color: var(--text-main);
     font-family: var(--font-b);
     line-height: 1.6;
-    cursor: none;
-}
-
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--primary);
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-}
-
-.cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--primary);
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: 0.15s;
 }
 
 .bg-shape {

@@ -2,38 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Custom Cursor Logic
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorOutline = document.getElementById('cursorOutline');
-
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
-
-    // Hover effect for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .highlight-box, .social-icon, .info-card, .tech-item');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.borderColor = 'var(--secondary)';
-            cursorOutline.style.background = 'rgba(103, 232, 249, 0.1)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.borderColor = 'var(--primary)';
-            cursorOutline.style.background = 'transparent';
-        });
-    });
-
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
