@@ -1,32 +1,16 @@
-# Josiane Nikuze - Professional Portfolio
+# React + Vite
 
-Welcome to the repository for my personal portfolio website! This project showcases my skills, experience, and the software engineering projects I've built as a passionate Frontend Developer and IT Student.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🚀 Live Demo
-[View Live Portfolio](https://josiane-ni.github.io/My-Portifolio/) *(Update this link if deployed to GitHub Pages or elsewhere)*
+Currently, two official plugins are available:
 
-## 🛠️ Tech Stack
-This portfolio is built with modern, responsive web technologies:
-- **HTML5** for semantic structure
-- **CSS3** with custom variables, glassmorphism UI, and smooth animations
-- **Vanilla JavaScript** for dynamic interactions
-- **Lucide Icons** for clean and consistent iconography
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## 💻 My Skills
-- **Frontend:** React.js, Next.js, HTML, CSS
-- **Backend:** Node.js, Java, Spring Framework, PHP, C++
-- **Databases:** PostgreSQL, MySQL, Oracle DB
-- **Tools:** Git/GitHub, Figma, Linux
+## React Compiler
 
-## 📂 Featured Projects
-- **ExploreRwanda Smart Travel Platform:** A high-performance travel ecosystem using React, Node.js, and PostgreSQL.
-- **MiniChess Game:** A Java-based LAN multiplayer chess engine.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 📥 Local Development
-To run this project locally:
-1. Clone the repository: `git clone https://github.com/Josiane-Ni/My-Portifolio.git`
-2. Navigate into the folder and open `Portifolio/index.html` in your web browser or use an extension like VS Code Live Server.
+## Expanding the ESLint configuration
 
-## 📫 Get in Touch
-- **Email:** josianenikuze45@gmail.com
-- **GitHub:** [@Josiane-Ni](https://github.com/Josiane-Ni)
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
