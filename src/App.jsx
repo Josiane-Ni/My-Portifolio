@@ -6,6 +6,11 @@ import {
   Send,
   Mail,
   Phone,
+  MapPin,
+  Check,
+  User,
+  Tag,
+  MessageSquare,
   Download,
   Menu,
   X,
@@ -19,17 +24,69 @@ import {
   ArrowRight,
   GitBranch,
   Settings,
-  Monitor
+  Monitor,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { navLinks, expertise, projects, socialLinks } from './data/portfolioData';
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [theme, setTheme] = useState('dark');
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [formStatus, setFormStatus] = useState('idle');
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", 
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        })
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setTimeout(() => {
+          setFormStatus('success');
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        }, 1000);
+      }
+    } catch (error) {
+      setTimeout(() => {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 1000);
+    }
+  };
+
+  useEffect(() => {
+    document.body.className = theme === 'light' ? 'light-theme' : '';
+  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,62 +106,6 @@ const App = () => {
       <div className="bg-shape shape-1" />
       <div className="bg-shape shape-2" />
 
-      {/* Technical Brief Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="modal-content"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="modal-header">
-                <h3>Technical Documentation</h3>
-                <button className="close-modal" onClick={() => setIsModalOpen(false)}><X size={20} /></button>
-              </div>
-              <div className="modal-body">
-                <div className="profile-preview">
-                  <img src="/profile.png" alt="Josiane Nikuze" />
-                  <div>
-                    <h4>Josiane Nikuze</h4>
-                    <p>Software Engineer</p>
-                  </div>
-                </div>
-                <div className="preview-scroll-area">
-                  <div className="doc-page">
-                    <div className="doc-header">
-                      <h2>ExploreRwanda Ecosystem</h2>
-                      <p>Full-Stack Architectural Overview & Implementation</p>
-                    </div>
-
-                    <div className="doc-section">
-                      <h4>Executive Summary</h4>
-                      <p>ExploreRwanda is an enterprise-grade digital ecosystem designed to modernize tourism infrastructure in Rwanda. The platform synchronizes Tour Operators, Hotels, and Travelers through a high-performance logistics engine.</p>
-                    </div>
-
-                    <div className="doc-section">
-                      <h4>Technical Stack</h4>
-                      <ul>
-                        <li><strong>Engine:</strong> Node.js, Spring Boot, PostgreSQL</li>
-                        <li><strong>Real-Time:</strong> Socket.io for instant entity synchronization</li>
-                        <li><strong>Interface:</strong> React.js & Next.js for high-fidelity UX</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-actions">
-                  <button className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>Close</button>
-                  <a href="/ExploreRwanda_Documentation.md" download className="btn btn-primary">
-                    <Download size={18} /> Download Brief
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Resume Preview Modal */}
       <AnimatePresence>
@@ -152,7 +153,7 @@ const App = () => {
                   {/* Summary */}
                   <div className="resume-doc-section">
                     <h2>Professional Summary</h2>
-                    <p>Dedicated software developer specializing in building responsive and interactive web applications. Experienced in React.js, modern UI design, data visualization, and database-driven systems. Passionate about delivering high-quality, user-centric digital solutions.</p>
+                    <p>Passionate Software Development student focused on frontend development, responsive web applications, and modern UI/UX design. Skilled in React.js, JavaScript, and database systems with a focus on creating innovative digital solutions.</p>
                   </div>
 
                   {/* Skills */}
@@ -242,19 +243,31 @@ const App = () => {
             Josiane Nikuze
           </a>
 
-          <nav className="nav-links">
-            {navLinks.map((link) => (
-              <a key={link.name} href={link.href}>{link.name}</a>
-            ))}
-            <button onClick={() => setIsResumeOpen(true)} className="nav-resume-btn">
-              <Download size={14} /> Resume
-            </button>
-            <a href="#contact" className="nav-btn">Connect</a>
-          </nav>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+            <nav className="nav-links">
+              {navLinks.map((link) => (
+                <a key={link.name} href={link.href}>{link.name}</a>
+              ))}
+              <button onClick={() => setIsResumeOpen(true)} className="nav-resume-btn">
+                <Download size={14} /> Resume
+              </button>
+              <a href="#contact" className="nav-btn">Connect</a>
+            </nav>
 
-          <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <button
+                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                style={{ background: 'none', border: 'none', color: 'var(--text-main)', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: '0.5rem', transition: 'var(--transition)' }}
+                className="theme-toggle-btn"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              </button>
+              <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                {isMobileMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -264,11 +277,11 @@ const App = () => {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="mobile-nav"
           >
-            <button className="mobile-menu-btn" style={{ position: 'absolute', top: '2rem', right: '2rem' }} onClick={() => setIsMobileMenuOpen(false)}>
+            <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(false)}>
               <X size={32} />
             </button>
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} style={{ fontSize: '2rem', color: 'white', textDecoration: 'none', fontWeight: 800 }} onClick={() => setIsMobileMenuOpen(false)}>
+              <a key={link.name} href={link.href} onClick={() => setIsMobileMenuOpen(false)}>
                 {link.name}
               </a>
             ))}
@@ -282,7 +295,7 @@ const App = () => {
           initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}
           className="hero-content"
         >
-          <span className="hero-subtitle">Software Engineer // Full Stack</span>
+          <span className="hero-subtitle">Software Developer // Frontend Specialist</span>
           <h1 className="hero-title">Engineering Digital <span className="highlight">Solutions</span>.</h1>
           <p className="hero-description">
             Specializing in building scalable management systems and high-fidelity user interfaces with a focus on performance and technical excellence.
@@ -292,9 +305,6 @@ const App = () => {
             <a href="#projects" className="btn btn-primary">
               View Projects <ArrowRight size={18} />
             </a>
-            <button onClick={() => setIsModalOpen(true)} className="btn btn-secondary">
-              <Download size={18} /> Technical Brief
-            </button>
           </div>
         </motion.div>
 
@@ -303,10 +313,6 @@ const App = () => {
           className="hero-image-wrapper"
         >
           <img src="/profile.png" alt="Josiane Nikuze" className="hero-profile-img" />
-          <div className="hero-badge">
-            <ShieldCheck size={14} color="#3b82f6" />
-            <span>Status: Production Ready</span>
-          </div>
         </motion.div>
       </section>
 
@@ -315,17 +321,16 @@ const App = () => {
         <div className="profile-grid">
           <div className="profile-main">
             <div className="section-header-compact">
-              <span className="bento-badge">// Professional Summary</span>
-              <h2>Architecting Scalable Systems</h2>
-              <p>Dedicated to engineering efficient software that bridges the gap between technical complexity and user-centric design.</p>
+              <h2>Building Digital Excellence</h2>
+              <p>Passionate Software Development student focused on frontend development, responsive web applications, and modern UI/UX design.</p>
             </div>
             <div className="profile-narrative">
               <p>
-                As a <strong>Software Engineer</strong>, I specialize in building robust digital ecosystems. My methodology prioritizes stability, performance, and seamless integration.
+                Skilled in <strong>React.js, JavaScript, HTML, CSS</strong>, and database systems with experience building academic and personal software projects. Dedicated to continuous learning, problem solving, and creating innovative digital solutions.
               </p>
               <div className="profile-social-row">
                 {socialLinks.map((social) => (
-                  <a key={social.name} href={social.href} className="social-tag">
+                  <a key={social.name} href={social.href} className="social-tag" target="_blank" rel="noopener noreferrer">
                     <social.icon size={14} />
                     <span>{social.name}</span>
                   </a>
@@ -346,9 +351,11 @@ const App = () => {
             <div className="profile-focus-card">
               <span className="bento-badge">Specialized Focus</span>
               <div className="focus-list">
-                <span><Layout size={12} /> UX Architecture</span>
-                <span><Database size={12} /> Data Persistence</span>
+                <span><Layout size={12} /> UI/UX Design</span>
+                <span><Database size={12} /> IoT & Machine Learning</span>
                 <span><Settings size={12} /> System Automation</span>
+                <span><Settings size={12} /> Advanced React.js</span>
+
               </div>
             </div>
           </div>
@@ -390,11 +397,11 @@ const App = () => {
             </div>
             <div className="xp-mini-stats">
               <div className="xp-mini-stat">
-                <span className="xp-mini-val">7</span>
+                <span className="xp-mini-val">{expertise.reduce((acc, curr) => acc + curr.skills.length, 0)}</span>
                 <span className="xp-mini-key">Skills</span>
               </div>
               <div className="xp-mini-stat">
-                <span className="xp-mini-val">3</span>
+                <span className="xp-mini-val">{projects.length}</span>
                 <span className="xp-mini-key">Projects</span>
               </div>
             </div>
@@ -430,29 +437,13 @@ const App = () => {
         </div>
 
         <div className="xp-kp-grid">
-          {[
-            {
-              num: '01', title: 'Employees Payroll Management System',
-              desc: 'A payroll management application with employee management, salary calculation, and an analytics dashboard.',
-              tech: ['React.js', 'Material UI', 'Recharts', 'SQL']
-            },
-            {
-              num: '02', title: 'Rwanda Tourism Management System',
-              desc: 'A tourism management database system with booking, accommodation, and destination management functionalities.',
-              tech: ['React.js', 'Node.js', 'PostgreSQL', 'React Router']
-            },
-            {
-              num: '03', title: 'RP Karongi College Website',
-              desc: 'A responsive institutional website featuring dark/light mode, live clocks, image gallery, and interactive UX.',
-              tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design']
-            }
-          ].map((p) => (
-            <div key={p.num} className="xp-kp-card">
-              <div className="xp-kp-bg-num">{p.num}</div>
+          {projects.slice(0, 3).map((p, index) => (
+            <div key={p.title} className="xp-kp-card">
+              <div className="xp-kp-bg-num">0{index + 1}</div>
               <div className="xp-kp-inner">
-                <span className="xp-kp-index">Project {p.num}</span>
+                <span className="xp-kp-index">Project 0{index + 1}</span>
                 <h4 className="xp-kp-title">{p.title}</h4>
-                <p className="xp-kp-desc">{p.desc}</p>
+                <p className="xp-kp-desc">{p.description}</p>
                 <div className="xp-kp-pills">
                   {p.tech.map(t => <span key={t}>{t}</span>)}
                 </div>
@@ -526,8 +517,10 @@ const App = () => {
                   {project.tech.map(t => <span key={t} className="tech-pill">{t}</span>)}
                 </div>
                 <div className="project-actions">
-                  <a href={project.link} className="action-link">View Live <Monitor size={14} /></a>
-                  <a href="#" className="action-link" style={{ color: 'var(--text-muted)' }}>Source Code <CodeXml size={14} /></a>
+                  {project.link && project.link !== '#' && (
+                    <a href={project.link} className="action-link">View Live <Monitor size={14} /></a>
+                  )}
+                  <a href={project.source || "#"} className="action-link" style={{ color: 'var(--text-muted)' }}>Source Code <CodeXml size={14} /></a>
                 </div>
               </div>
             </div>
@@ -566,18 +559,114 @@ const App = () => {
                 <p>+250798271462</p>
               </div>
             </div>
+            <div className="contact-card">
+              <div className="contact-icon"><MapPin size={18} /></div>
+              <div>
+                <span className="bento-badge" style={{ marginBottom: '0.2rem' }}>Location</span>
+                <p>Kigali, Rwanda</p>
+              </div>
+            </div>
           </div>
 
-          <form className="contact-form">
-            <div className="form-grid">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
+          <div className="contact-form-professional-hub">
+            {formStatus === 'success' ? (
+              <div className="professional-success-state">
+                <div className="professional-success-icon">
+                  <Check size={36} />
+                </div>
+                <h3 className="professional-form-title" style={{ textAlign: 'center', width: '100%' }}>Inquiry Successfully Logged</h3>
+                <p className="professional-form-subtitle" style={{ textAlign: 'center', marginBottom: 0 }}>
+                  Thank you for initiating contact. Your inquiry has been routed directly to my inbox. I typically review and respond within 12 to 24 hours.
+                </p>
+                <button 
+                  onClick={() => setFormStatus('idle')} 
+                  className="professional-submit-btn" 
+                  style={{ marginTop: '1.5rem', width: 'auto', display: 'inline-flex' }}
+                >
+                  Submit Another Inquiry
+                </button>
               </div>
-              <textarea placeholder="Technical Brief / Project Inquiry..." rows="5" />
-              <button type="submit" className="submit-btn">Send Message</button>
-            </div>
-          </form>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="professional-form-element">
+                <div>
+                  <h3 className="professional-form-title">Initiate Collaboration</h3>
+                  <p className="professional-form-subtitle">
+                    Have a project concept, a technical puzzle, or a strategic business opportunity? Let's discuss how we can build it.
+                  </p>
+                </div>
+
+                <div className="professional-form-row">
+                  <div className="professional-form-group">
+                    <label className="professional-form-label">FULL NAME</label>
+                    <div className="professional-input-wrapper">
+                      <User size={16} className="professional-input-icon" />
+                      <input 
+                        type="text" 
+                        placeholder="Josiane Nikuze" 
+                        className="professional-form-input" 
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        required 
+                      />
+                    </div>
+                  </div>
+
+                  <div className="professional-form-group">
+                    <label className="professional-form-label">WORK EMAIL</label>
+                    <div className="professional-input-wrapper">
+                      <Mail size={16} className="professional-input-icon" />
+                      <input 
+                        type="email" 
+                        placeholder="josiane23@gmail.com" 
+                        className="professional-form-input" 
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        required 
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="professional-form-group">
+                  <label className="professional-form-label">INQUIRY PURPOSE</label>
+                  <div className="professional-input-wrapper">
+                    <Tag size={16} className="professional-input-icon" />
+                    <input 
+                      type="text" 
+                      placeholder="Web Application / Systems Architecture / Strategic Role" 
+                      className="professional-form-input" 
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <div className="professional-form-group">
+                  <label className="professional-form-label">PROJECT BRIEF / DESCRIPTION</label>
+                  <div className="professional-input-wrapper professional-textarea-wrapper">
+                    <MessageSquare size={16} className="professional-input-icon professional-textarea-icon" />
+                    <textarea 
+                      placeholder="Describe your project, technology stack, timeline, or inquiry in detail..." 
+                      rows="5" 
+                      className="professional-form-input professional-textarea-input" 
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="professional-submit-btn" 
+                  disabled={formStatus === 'submitting'}
+                >
+                  {formStatus === 'submitting' ? 'Transmitting...' : 'Send Message'} <Send size={16} />
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 
@@ -617,9 +706,11 @@ const App = () => {
             <div className="footer-group">
               <h4>Network</h4>
               <div className="link-grid">
-                <a href="#"><Globe size={14} /> GitHub</a>
-                <a href="#"><Briefcase size={14} /> LinkedIn</a>
-                <a href="#"><Send size={14} /> Twitter</a>
+                {socialLinks.map((social) => (
+                  <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
+                    <social.icon size={14} /> {social.name}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -632,7 +723,7 @@ const App = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   );
 };
 

@@ -64,7 +64,8 @@ export const projects = [
     description: 'Developed a networked software engine implementing advanced logic and state persistence for synchronized gameplay.',
     impact: ["Logic Engine Implementation", "Network Synchronization", "Relational State Management"],
     tech: ['Java SE', 'MySQL', 'Network Protocol'],
-    link: 'https://github.com/Josephat-S/Custom-Mini-Chess-Game',
+    link: '#',
+    source: 'https://github.com/Josephat-S/Custom-Mini-Chess-Game',
     image: 'https://images.unsplash.com/photo-1528819622765-d6bcf132f793?auto=format&fit=crop&q=80&w=1200'
   },
   {
@@ -78,7 +79,7 @@ export const projects = [
 ];
 
 export const socialLinks = [
-  { name: 'GitHub', href: '#', icon: Globe },
-  { name: 'LinkedIn', href: '#', icon: Briefcase },
-  { name: 'Twitter', href: '#', icon: Send },
+  { name: 'GitHub', href: 'https://www.google.com/search?q=github+login&oq=git&gs_lcrp=EgZjaHJvbWUqDAgDECMYJxiABBiKBTIGCAAQRRg8MhEIARBFGDkYQxixAxiABBiKBTIVCAIQLhhDGMcBGLEDGNEDGIAEGIoFMgwIAxAjGCcYgAQYigUyBggEEEUYPDIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDMxMDlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8', icon: Globe },
+  { name: 'LinkedIn', href: 'https://www.google.com/search?q=linkedin+login&oq=lin&gs_lcrp=EgZjaHJvbWUqCggDEAAYsQMYgAQyBggAEEUYPDIQCAEQLhjHARixAxjRAxiABDIGCAIQRRg5MgoIAxAAGLEDGIAEMgoIBBAAGLEDGIAEMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEINDI2NGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8', icon: Briefcase },
+  { name: 'Twitter', href: 'https://www.google.com/search?q=x.com+login&oq=x&gs_lcrp=EgZjaHJvbWUqDggDEEUYJxg7GIAEGIoFMgYIABBFGDwyDwgBEEUYOxiDARixAxiABDIOCAIQRRgnGDsYgAQYigUyDggDEEUYJxg7GIAEGIoFMhAIBBAAGJECGLEDGIAEGIoFMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMjUxOWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8', icon: Send },
 ];
