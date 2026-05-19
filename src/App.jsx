@@ -37,6 +37,8 @@ const App = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [theme, setTheme] = useState('dark');
+  const [isProjectsShowcaseOpen, setIsProjectsShowcaseOpen] = useState(false);
+  const [selectedTechFilter, setSelectedTechFilter] = useState('All');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -106,6 +108,86 @@ const App = () => {
       <div className="bg-shape shape-1" />
       <div className="bg-shape shape-2" />
 
+
+      {/* Full-Screen Projects Showcase Modal */}
+      <AnimatePresence>
+        {isProjectsShowcaseOpen && (
+          <div className="projects-modal-overlay">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.3 }}
+              className="projects-modal-container"
+            >
+              {/* Showcase Header */}
+              <div className="projects-showcase-header">
+                <div className="projects-showcase-title">
+                  <span className="bento-badge">// Project Showcase</span>
+                  <h2>Systems &amp; Applications</h2>
+                </div>
+                <button className="close-showcase-btn" onClick={() => setIsProjectsShowcaseOpen(false)}>
+                  <X size={20} /> Back to Portfolio
+                </button>
+              </div>
+
+              {/* Showcase Content */}
+              <div className="projects-showcase-content">
+                <p className="projects-showcase-intro">
+                  A curated collection of scalable software systems, interactive web applications, and technical engineering solutions.
+                </p>
+
+                {/* Tech Filters */}
+                <div className="tech-filter-bar">
+                  {['All', ...new Set(projects.flatMap(p => p.tech))].map(tech => (
+                    <button
+                      key={tech}
+                      className={`filter-tab ${selectedTechFilter === tech ? 'active' : ''}`}
+                      onClick={() => setSelectedTechFilter(tech)}
+                    >
+                      {tech}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Projects Grid */}
+                <div className="projects-showcase-grid">
+                  {projects
+                    .filter(p => selectedTechFilter === 'All' || p.tech.includes(selectedTechFilter))
+                    .map((project) => (
+                      <div key={project.title} className="project-card showcase-card">
+                        <div className="project-header" style={{ backgroundImage: `url(${project.image})` }}>
+                        </div>
+                        <div className="project-info">
+                          <h3>{project.title}</h3>
+                          <p className="project-desc">{project.description}</p>
+                          <div className="impact-points">
+                            {project.impact.map(point => (
+                              <div key={point} className="impact-point">
+                                <ChevronRight size={12} color="var(--accent)" /> {point}
+                              </div>
+                            ))}
+                          </div>
+                          <div className="tech-pills">
+                            {project.tech.map(t => <span key={t} className="tech-pill">{t}</span>)}
+                          </div>
+                          <div className="project-actions">
+                            {project.link && project.link !== '#' && (
+                              <a href={project.link} className="action-link" target="_blank" rel="noopener noreferrer">View Live <Monitor size={14} /></a>
+                            )}
+                            {project.source && (
+                              <a href={project.source} className="action-link" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)' }}>Source Code <CodeXml size={14} /></a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Resume Preview Modal */}
       <AnimatePresence>
@@ -340,14 +422,6 @@ const App = () => {
           </div>
 
           <div className="profile-sidebar">
-            <div className="stat-card">
-              <div className="stat-value">99.9%</div>
-              <div className="stat-label">System Uptime</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-value">12+</div>
-              <div className="stat-label">Solutions Shipped</div>
-            </div>
             <div className="profile-focus-card">
               <span className="bento-badge">Specialized Focus</span>
               <div className="focus-list">
@@ -527,13 +601,11 @@ const App = () => {
           ))}
         </div>
 
-        {!showAllProjects && projects.length > 3 && (
-          <div className="view-more-container">
-            <button className="btn btn-secondary" onClick={() => setShowAllProjects(true)}>
-              View More Projects <ArrowRight size={18} />
-            </button>
-          </div>
-        )}
+        <div className="view-more-container">
+          <button className="btn btn-secondary" onClick={() => setIsProjectsShowcaseOpen(true)}>
+            View All Projects <ArrowRight size={18} />
+          </button>
+        </div>
       </section>
 
       {/* Contact Section */}
